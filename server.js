@@ -14,7 +14,8 @@ mongoose.Promise = global.Promise
 const MONGOLAB_URI = "mongodb+srv://user1:okay@cluster0.diqll.mongodb.net/sample_airbnb?retryWrites=true&w=majority";
 
 mongoose.connect(MONGOLAB_URI, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   }).catch(err => console.log(err))
 
 app.use(urlencoder);
