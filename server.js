@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const urlencoder = bodyParser.urlencoded({
-    extended: false
+    extended: false,
+    useUnifiedTopology: true,
 }) 
 
 const session = require("express-session");
