@@ -14,12 +14,6 @@ const router = express.Router();
 
 router.use("/secretary", require("./secretaryController"));
 
-router.get("/", (req, res) => {
-    
-})
 
-router.get("/home", (req, res) => {
-    
-})
 
 module.exports = router;

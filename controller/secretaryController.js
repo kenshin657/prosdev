@@ -34,6 +34,7 @@ router.get("/", async function(req, res) {
 */
 router.get("/week_all", function (request, result){
     let all_week = fs.readFileSync('./views/module_templates/secretary_week_all.hbs', 'utf-8');
+    console.log(request)
     result.send(all_week);
 });
 
@@ -235,30 +236,21 @@ router.get("/appointmentlist", (req, res) => {
 //wala siyang appointment on the time slot, it will mean available
 router.post("/create", (req, res) => {
 
-    let patientname = req.body.pn
-    let patientcontact = req.body.pc
-    let process = req.body.pp
-    let notes = req.body.note
-    let time = req.body.time
-    let date = req.body.date
-    let doctor = req.body.doc
+    console.log(req.body)
 
     let appointment = new Appointment({
-        patientname,
-        patientcontact,
-        process,
-        notes,
-        time,
-        date,
-        doctor
+        'lastname': req.body.lastname,
+        'firstname': req.body.firstname,
+        'date': req.body.dateInput,
+        'process': req.body.procedures,
+        'time': req.body.timeInput,
+        'doctor': req.body.doctors,
+        'notes': req.body.note,
     })
 
     Appointment.addAppointment(appointment, function(appointment){
-        if (req.session.colors_from_home){
+
             res.redirect("/secretary");
-        } else {
-            res.redirect("/");
-        }
         
     }, (error)=>{
         res.send(error);
