@@ -9,13 +9,23 @@ const session = require("express-session");
 const path = require("path");
 var app = new express();
 
-mongoose.Promise = global.Promise
-const MONGOLAB_URI = process.env.MONGOLAB_URI || "mongodb://localhost:27017/appointmentsys"
+//mongoose.Promise = global.Promise
+//const MONGOLAB_URI = process.env.MONGOLAB_URI || "mongodb://localhost:27017/appointmentsys"
 
-mongoose.connect(MONGOLAB_URI, {
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://user1:okay@cluster0.diqll.mongodb.net/sample_airbnb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, });
+client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
+
+
+/*mongoose.connect(MONGOLAB_URI, {
     useNewUrlParser: true
   }).catch(err => console.log(err))
-
+*/
 app.use(urlencoder);
 app.use(session({
     resave: true,
